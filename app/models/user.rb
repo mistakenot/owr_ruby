@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
    def getReviews
-     Reviews.where(user_id: id)
+     Review.find_by(user_id: id)
    end
 end

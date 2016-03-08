@@ -23,8 +23,7 @@ class UsersController < ApplicationController
     params[:password_hash] = hash.hex_string
     params[:salt] = hash.salt
 
-    @user = User.new(user_params)
-    @user.save
+    @user = User.create(user_params)
     redirect_to ''
   end
 
