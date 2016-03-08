@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Titles</h2>
+  </div>
+</div>
+<ul>
+  <% @titles.each do |msg| %>
+    <div class="row">
+      <li>
+        <div class="col-xs-6">
+          <%= msg.title %><br>
+        </div>
+        <div class="col-xs-6">
+          <%= link_to 'Show', title_path(msg) %>
+        </div>
+      </li>
+    </div>
+  <% end %>
+</ul>
