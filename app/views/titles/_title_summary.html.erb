@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-3">
+        <img src='<%= "/poster/" + @title.imdbId %>'>
+      </div>
+      <div class="col-sm-9">
+        <%= link_to @title.name, title_path(msg) %>
+        <%= @reviews.each do |r| %>
+          <%= r.content %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

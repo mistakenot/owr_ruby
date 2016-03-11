@@ -35,6 +35,8 @@ gem 'devise'
 
 gem 'pg'
 
+gem 'jquery-star-rating-rails'
+
 # gem 'jquery_mobile_rails'
 
 group :test, :development do

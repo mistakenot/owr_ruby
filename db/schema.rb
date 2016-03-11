@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160304183933) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "review_id"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20160304183933) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "comments", ["review_id"], name: "index_comments_on_review_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["review_id"], name: "index_comments_on_review_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
     t.text     "content"
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 20160304183933) do
     t.decimal  "ratings"
   end
 
-  add_index "reviews", ["title_id"], name: "index_reviews_on_title_id"
+  add_index "reviews", ["title_id"], name: "index_reviews_on_title_id", using: :btree
 
   create_table "sessions", force: :cascade do |t|
     t.string   "token"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 20160304183933) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
+  add_index "sessions", ["user_id"], name: "index_sessions_on_user_id", using: :btree
 
   create_table "titles", force: :cascade do |t|
     t.string   "title"
@@ -67,8 +70,8 @@ ActiveRecord::Schema.define(version: 20160304183933) do
     t.string   "last_sign_in_ip"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "review_id"
@@ -77,7 +80,7 @@ ActiveRecord::Schema.define(version: 20160304183933) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "votes", ["review_id"], name: "index_votes_on_review_id"
-  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
+  add_index "votes", ["review_id"], name: "index_votes_on_review_id", using: :btree
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
 end

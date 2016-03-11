@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  get 'home/index'
+
+  post '/rate' => 'rater#create', :as => 'rate'
   # You can have the root of your site routed with "root"
-  root to: 'titles#index'
+  root to: 'home#index'
 
   devise_for :users
 

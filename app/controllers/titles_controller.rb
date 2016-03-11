@@ -35,12 +35,15 @@ class TitlesController < ApplicationController
     if result.code == 200
       json = JSON.parse result.to_str
       @results = json["Search"].map { |j|
-        Title.find_by imdbId: j["imdbID"] ||
-        Title.create(
-          :title => j["Title"],
-          :imdbId => j["imdbID"],
-          :year => j["Year"].to_i
-        )
+        movie = Title.find_by imdbId: j["imdbID"]
+        if movie == nil
+          movie = Title.create(
+            :title => j["Title"],
+            :imdbId => j["imdbID"],
+            :year => j["Year"].to_i
+          )
+        end
+        movie
       }
     else
       render plain: result.code
