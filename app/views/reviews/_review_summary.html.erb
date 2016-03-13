@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="review-content">
+        "<%= review.content %>"
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <%= review.getVoteCount() %>
+  </div>
+
+  <% if user_signed_in? %>
+    <%= form_for :vote, url: votes_path do |f| %>
+      <%= f.hidden_field :review_id, {:value => review.id} %>
+
+      <%= f.submit %>
+    <% end %>
+  <% end %>
+</div>

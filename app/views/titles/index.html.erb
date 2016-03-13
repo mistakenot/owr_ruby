@@ -1,23 +1,17 @@
 <div class="row">
-  <div class="col-sm-12">
-    <h2>Titles</h2>
+  <div class="col-sm-1">
+    <h4>Titles</h4>
   </div>
 </div>
 
-<ul>
-  <% @titles.each do |msg| %>
+<div>
+  <% @titles.each_slice(2) do |pair| %>
     <div class="row">
-      <li>
-        <div class="col-xs-6">
-          <%= msg.title %><br>
+      <% pair.each do |t| %>
+        <div class="col-sm-6">
+          <%= render "title_summary", title: t, reviews: t.reviews %>
         </div>
-        <div class="col-xs-6">
-          <%= link_to 'Show', title_path(msg) %>
-        </div>
-      </li>
+      <% end %>
     </div>
   <% end %>
-  <ul class="pagination">
-
-  </ul>
-</ul>
+</div>

@@ -1,14 +1,21 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
-      <div class="col-sm-3">
-        <img src='<%= "/poster/" + @title.imdbId %>'>
+      <div class="col-sm-6">
+        <img src='<%= "/poster/" + title.imdbId %>'>
       </div>
-      <div class="col-sm-9">
-        <%= link_to @title.name, title_path(msg) %>
-        <%= @reviews.each do |r| %>
-          <%= r.content %>
+      <div class="col-sm-6">
+        <%= link_to title.title, title_path(title) %>
+
+        <p><%= title.year %></p>
+        <p><%= title.description %></p>
+
+        <% reviews.each do |r| %>
+          <p>"<%= r.content %>"</p>
+          <p><%= r.ratings %></p>
         <% end %>
+
+        <%= link_to 'Write a review', title_path(title) %>
       </div>
     </div>
   </div>

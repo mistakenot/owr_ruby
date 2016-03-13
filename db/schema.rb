@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304183933) do
+ActiveRecord::Schema.define(version: 20160313172649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,9 +32,11 @@ ActiveRecord::Schema.define(version: 20160304183933) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal  "ratings"
+    t.integer  "user_id"
   end
 
   add_index "reviews", ["title_id"], name: "index_reviews_on_title_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "sessions", force: :cascade do |t|
     t.string   "token"
@@ -83,4 +85,5 @@ ActiveRecord::Schema.define(version: 20160304183933) do
   add_index "votes", ["review_id"], name: "index_votes_on_review_id", using: :btree
   add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
+  add_foreign_key "reviews", "users"
 end

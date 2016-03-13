@@ -40,7 +40,8 @@ class TitlesController < ApplicationController
           movie = Title.create(
             :title => j["Title"],
             :imdbId => j["imdbID"],
-            :year => j["Year"].to_i
+            :year => j["Year"].to_i,
+            :description => j[""]
           )
         end
         movie
