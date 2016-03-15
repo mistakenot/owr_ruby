@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-1">
+    <h4>Recent Reviews</h4>
+  </div>
+</div>
+
+<div>
+  <%= render "/titles/title_list", titles: @recently_reviewed %>
+</div>
+
+<div class="row">
+  <div class="col-sm-1">
+    <h4>New Titles</h4>
+  </div>
+  <%= render "/titles/title_list", titles: @recent_titles %>
+</div>

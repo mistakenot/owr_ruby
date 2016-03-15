@@ -1,0 +1,9 @@
+<% titles.each_slice(2) do |pair| %>
+  <div class="row">
+    <% pair.each do |t| %>
+      <div class="col-sm-6">
+        <%= render "/titles/title_summary", title: t, reviews: t.reviews %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

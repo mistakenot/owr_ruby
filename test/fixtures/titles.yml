@@ -1,9 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyText
-
-two:
-  title: MyString
-  description: MyText
+  title: "Star Trek"
+  imdbId: "tt0796366"
+  year: 2009

@@ -2,7 +2,6 @@
 
 <% @results.each do |r| %>
   <div class="row">
-    <%= r.imdbId %>
     <img src='<%= "/poster/" + r.imdbId %>'>
     <%= link_to "View", title_path(r) %>
   </div>

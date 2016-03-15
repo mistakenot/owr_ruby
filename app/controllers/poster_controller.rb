@@ -12,8 +12,8 @@ class PosterController < ApplicationController
 
     send_file(
       "public/posters/" + imdbId + ".jpeg",
-      :type => "image/jpeg",
-      :x_sendfile => true
+      type: "image/jpeg",
+      x_sendfile: true
     )
   end
 

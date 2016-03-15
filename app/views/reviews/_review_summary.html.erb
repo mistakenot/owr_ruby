@@ -1,20 +1,28 @@
-<div class="row">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="review-content">
-        "<%= review.content %>"
-      </div>
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="row">
+
+        <div class="col-sm-10">
+          <div class="review-content">
+            <p>"<%= review.content %>"</p>
+          </div>
+        </div>
+
+        <div class="col-sm-1">
+          <%= review.getVoteCount() %> votes
+        </div>
+
+        <div class="col-sm-1">
+          <% if user_signed_in? %>
+            <%= form_for :vote, url: votes_path do |f| %>
+              <%= f.hidden_field :review_id, {:value => review.id} %>
+              <%= f.submit "Vote" %>
+            <% end %>
+          <% end %>
+        </div>
+
     </div>
-  </div>
-  <div class="row">
-    <%= review.getVoteCount() %>
-  </div>
 
-  <% if user_signed_in? %>
-    <%= form_for :vote, url: votes_path do |f| %>
-      <%= f.hidden_field :review_id, {:value => review.id} %>
-
-      <%= f.submit %>
-    <% end %>
-  <% end %>
+  </div>
 </div>

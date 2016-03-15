@@ -23,32 +23,10 @@ class TitlesController < ApplicationController
 
   def search
     term = params[:term]
-    result = RestClient.get(
-      "http://www.omdbapi.com/",
-      { :params => {
-        "s" => params[:term],
-        "type" => "movie",
-        "page" => "1" }
-      }
-    )
+    result = SearchHelper.searchByTerm(term)
+    unimportedTitles = result.map { |t| TitlesHelper.search_json_to_title(t) }
+    @results = TitlesHelper.import_titles(unimportedTitles)
 
-    if result.code == 200
-      json = JSON.parse result.to_str
-      @results = json["Search"].map { |j|
-        movie = Title.find_by imdbId: j["imdbID"]
-        if movie == nil
-          movie = Title.create(
-            :title => j["Title"],
-            :imdbId => j["imdbID"],
-            :year => j["Year"].to_i,
-            :description => j[""]
-          )
-        end
-        movie
-      }
-    else
-      render plain: result.code
-    end
   end
 
   private

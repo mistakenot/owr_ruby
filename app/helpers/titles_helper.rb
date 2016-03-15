@@ -3,8 +3,8 @@ require 'json'
 
 module TitlesHelper
 
-  def download_description(title)
-    result = RestClient.get(
+  def self.download_description(title)
+    resultString = RestClient.get(
       "http://www.omdbapi.com/",
       { :params => {
         "i" => title.imdbId,
@@ -13,11 +13,30 @@ module TitlesHelper
       }
     )
 
-    if result["Response"].to_b
+    result = JSON.parse resultString.to_s
+
+    if result["Response"].to_s == "True"
       title.description = result["Plot"]
       title.save
     else
-      raise result["Error"]
+      result["Error"].to_s
+    end
+  end
+
+  def self.search_json_to_title(j)
+    Title.new(
+      :title => j["Title"],
+      :imdbId => j["imdbID"],
+      :year => j["Year"].to_i,
+      :description => nil
+    )
+  end
+
+  def self.import_titles(titles)
+    titles.each do |t|
+      if !Title.find_by(imdbId: t.imdbId)
+        t.save
+      end
     end
   end
 
