@@ -32,12 +32,12 @@ module TitlesHelper
     )
   end
 
-  def self.import_titles(titles)
-    titles.each do |t|
-      if !Title.find_by(imdbId: t.imdbId)
-        t.save
-      end
-    end
+  def self.import_title(t)
+    Title.find_by(imdbId: t.imdbId) || t.save
+  end
+
+  def by_imdbId(imdbId)
+    Title.find_by imdbId: imdbId
   end
 
 end

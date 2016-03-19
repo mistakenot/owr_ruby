@@ -23,10 +23,17 @@ class TitlesController < ApplicationController
 
   def search
     term = params[:term]
-    result = SearchHelper.searchByTerm(term)
-    unimportedTitles = result.map { |t| TitlesHelper.search_json_to_title(t) }
-    @results = TitlesHelper.import_titles(unimportedTitles)
-
+    json = SearchHelper.searchByTerm(term)
+    @results = json.map { |j|
+      find = Title.find_by(imdbId: j["imdbID"])
+      if find
+        find
+      else
+        newTitle = TitlesHelper.search_json_to_title(j)
+        newTitle.save!
+        newTitle
+      end
+    }
   end
 
   private

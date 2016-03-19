@@ -3,10 +3,14 @@
 
     <div class="row">
 
-        <div class="col-sm-10">
+        <div class="col-sm-8">
           <div class="review-content">
             <p>"<%= review.content %>"</p>
           </div>
+        </div>
+
+        <div class="col-sm-2">
+          <%= render "reviews/display_stars", num_stars: review.ratings.to_int %>
         </div>
 
         <div class="col-sm-1">

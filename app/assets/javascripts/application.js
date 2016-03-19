@@ -16,3 +16,25 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery-star-rating
+
+var setupSelectableStars = function() {
+  var selector = "input.selectable-star";
+  var trueClass = "selected-star";
+  var falseClass = "selectable-star";
+
+  $(selector).each(function() {
+    $(this).click(function() {
+      var selectedValue = this.value;
+      var others = selector + "[name=" + this.name + "]"
+      $(others).each(function() {
+        if (this.value < selectedValue) {
+          $(this).removeClass(falseClass);
+          $(this).addClass(trueClass);
+        } else {
+          $(this).removeClass(trueClass);
+          $(this).addClass(falseClass);
+        }
+      })
+    })
+  })
+}

@@ -1,3 +1,10 @@
+<% if label %>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2><%= label.to_s %></h2>
+    </div>
+  </div>
+<% end %>
 <% titles.each_slice(2) do |pair| %>
   <div class="row">
     <% pair.each do |t| %>

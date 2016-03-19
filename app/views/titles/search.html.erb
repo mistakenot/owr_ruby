@@ -1,8 +1,17 @@
-<h2>Search Results</h2>
-
-<% @results.each do |r| %>
-  <div class="row">
-    <img src='<%= "/poster/" + r.imdbId %>'>
-    <%= link_to "View", title_path(r) %>
+<div class="row">
+  <div class="col-sm-1">
+    <h4>Search Results</h4>
   </div>
-<% end %>
+</div>
+
+<div>
+  <% @results.each_slice(2) do |pair| %>
+    <div class="row">
+      <% pair.each do |t| %>
+        <div class="col-sm-6">
+          <%= render "title_summary", title: t, reviews: t.reviews %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

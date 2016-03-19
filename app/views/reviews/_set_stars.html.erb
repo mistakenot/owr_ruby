@@ -1,0 +1,9 @@
+<div>
+  <% for i in (1..5) %>
+    <input name="ratings"
+           type="radio"
+           class="selectable-star"
+           aria-hidden="true"
+           value="<%= i %>"/>
+   <% end %>
+</div>
