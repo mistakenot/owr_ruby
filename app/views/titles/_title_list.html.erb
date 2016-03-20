@@ -9,7 +9,7 @@
   <div class="row">
     <% pair.each do |t| %>
       <div class="col-sm-6">
-        <%= render "/titles/title_summary", title: t, reviews: t.reviews %>
+        <%= render "/titles/title_summary", title: t, reviews: t.reviews.take(3) %>
       </div>
     <% end %>
   </div>

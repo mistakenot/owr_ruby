@@ -2,7 +2,8 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-sm-6">
-        <img src='<%= "/poster/" + title.imdbId %>'>
+        <!-- <img src='<%= "/poster/" + title.imdbId %>'> -->
+        <%= render "posters/show", title: title %>
       </div>
       <div class="col-sm-6">
         <%= link_to title.title, title_path(title) %>
@@ -12,10 +13,12 @@
 
         <% reviews.each do |r| %>
           <p>"<%= r.content %>"</p>
-          <p><%= r.ratings %></p>
+          <p><%= render "reviews/display_stars", num_stars: r.ratings %></p>
         <% end %>
 
-        <%= link_to 'Write a review', title_path(title) %>
+        <% if reviews.count == 0 %>
+          <%= link_to 'Write a review', title_path(title) %>
+        <% end %>
       </div>
     </div>
   </div>
